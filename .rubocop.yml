@@ -1,0 +1,22 @@
+AllCops:
+  TargetRubyVersion: 3.4.1
+  NewCops: enable
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - bin/*
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - Gemfile
+    - Gemfile.lock
+    - Rakefile
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+
+Style/Documentation:
+  Enabled: false
