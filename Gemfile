@@ -50,7 +50,7 @@ group :development, :test do
 
   # test
   gem 'rspec-rails'
-  gem 'simplecov', '~> 0.21.1', require: false
+  gem 'simplecov', '~> 0.22.0', require: false
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda-matchers'
