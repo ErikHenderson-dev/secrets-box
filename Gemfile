@@ -44,8 +44,8 @@ gem 'sassc-rails'
 # gem "image_processing", "~> 1.2"
 
 gem "devise", "~> 4.9"
-# gem 'abbrev'
-# gem 'ostruct'
+gem 'abbrev'
+gem 'ostruct'
 
 group :development, :test do
   # Security tools
@@ -73,6 +73,6 @@ group :development do
  
   # Debug
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # gem 'pry'
-  # gem 'pry-byebug'
+  gem 'pry'
+  gem 'pry-byebug'
 end
