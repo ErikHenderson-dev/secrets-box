@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <img src="/assets/logo.png" style="width: 100px; height: 100px;" class="rounded mx-auto d-block mt-10" alt="logo"/>
+
+          <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="mb-3">
+              <%= f.label :email, class: "form-label" %><br />
+              <%= f.email_field :email, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control", placeholder: "Digite seu e-mail" %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Enviar instruções de confirmação", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+          
+          <div class="text-center mt-3">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

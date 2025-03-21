@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <img src="/assets/logo.png" style="width: 100px; height: 100px;" class="rounded mx-auto d-block mt-10" alt="logo"/>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+            <div class="mb-3">
+              <%= f.label :email, class: "form-label" %>
+              <%= f.email_field :email, class: "form-control", placeholder: "Digite seu e-mail" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label "Senha", class: "form-label" %>
+              <%= f.password_field :password, class: "form-control", placeholder: "Digite sua senha" %>
+            </div>
+
+            <div class="form-check mb-3">
+              <%= f.check_box :remember_me, class: "form-check-input" if devise_mapping.rememberable? %>
+              <%= f.label "Lembre-me", class: "form-check-label" if devise_mapping.rememberable? %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Entrar", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+          <div class="text-center mt-3">
+            <%= link_to "Esqueci minha senha", new_password_path(resource_name), class: "text-decoration-none" if devise_mapping.recoverable? %>
+            <br>
+            <%= link_to "Não tem uma conta? Cadastre-se", new_registration_path(resource_name), class: "text-decoration-none" if devise_mapping.registerable? %>
+            <br>
+            <%= link_to "Não recebeu instruções de confirmação?", new_confirmation_path(resource_name), class: "text-decoration-none" if devise_mapping.confirmable? %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
