@@ -12,12 +12,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    user_name: ENV['EMAIL_USERNAME'],
-    password: ENV['EMAIL_PASSWORD'],
-    authentication: 'plain',
-    enable_starttls_auto: true
+    address: ENV.fetch('SMTP_ADDRESS', 'smtp.gmail.com'),
+    port: ENV.fetch('SMTP_PORT', 587),
+    domain: ENV.fetch('SMTP_DOMAIN', 'gmail.com'),
+    user_name: ENV.fetch('EMAIL_USERNAME', nil),
+    password: ENV.fetch('EMAIL_PASSWORD', nil),
+    authentication: ENV.fetch('SMTP_AUTH', 'plain'),
+    enable_starttls_auto: ENV.fetch('SMTP_TLS', true)
   }
 
   config.active_support.deprecation = :log
