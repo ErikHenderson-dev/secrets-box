@@ -1,0 +1,70 @@
+<% content_for :title, "Dashboard - Secrets Box" %>
+<% content_for :page_title, "Dashboard" %>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Senhas & Arquivos Recentes</h5>
+        <%= link_to "Ver Todos", my_secrets_path, class: "btn btn-sm btn-primary" %>
+      </div>
+      <div class="card-body">
+        <% if @recent_secrets.any? %>
+          <div class="list-group list-group-flush">
+            <% @recent_secrets.each do |secret| %>
+              <%= link_to my_secret_path(secret), class: "list-group-item list-group-item-action" do %>
+                <div class="d-flex w-100 justify-content-between">
+                  <h6 class="mb-1"><%= secret.title %></h6>
+                  <small class="text-muted"><%= time_ago_in_words(secret.created_at) %></small>
+                </div>
+                <p class="mb-1 text-muted"><%= secret.description %></p>
+                <small class="text-muted">
+                  <i class="fas <%= secret.category == 'file' ? 'fa-file' : 'fa-key' %> me-1"></i>
+                  <%= t("my_secrets.categories.#{secret.category}") %>
+                </small>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="text-center py-4">
+            <i class="fas fa-lock fa-3x text-muted mb-3"></i>
+            <p class="mb-0">Você ainda não tem nenhuma senha ou arquivo salvo.</p>
+            <%= link_to "Criar Novo", new_my_secret_path, class: "btn btn-primary mt-3" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Bem-vindo, <%= current_user.username %></h5>
+        <p class="card-text">Gerencie suas senhas e arquivos de forma segura.</p>
+        <%= link_to new_my_secret_path, class: "btn btn-success w-100" do %>
+          <i class="fas fa-plus me-2"></i> Adicionar Novo
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Dicas de Segurança</h5>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-2">
+            <i class="fas fa-check-circle text-success me-2"></i>
+            Use senhas fortes e únicas
+          </li>
+          <li class="mb-2">
+            <i class="fas fa-check-circle text-success me-2"></i>
+            Ative autenticação em duas etapas
+          </li>
+          <li>
+            <i class="fas fa-check-circle text-success me-2"></i>
+            Mantenha seus dados atualizados
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> 

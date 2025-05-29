@@ -1,0 +1,77 @@
+<% content_for :title, "Configurações - Secrets Box" %>
+<% content_for :page_title, "Configurações" %>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Perfil</h5>
+      </div>
+      <div class="card-body">
+        <%= form_for current_user, url: settings_update_profile_path, method: :patch do |f| %>
+          <div class="mb-3">
+            <%= f.label :username, "Nome de Usuário", class: "form-label" %>
+            <%= f.text_field :username, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :email, "E-mail", class: "form-label" %>
+            <%= f.email_field :email, class: "form-control" %>
+          </div>
+
+          <div class="d-grid">
+            <%= f.submit "Atualizar Perfil", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header">
+        <h5 class="mb-0">Segurança</h5>
+      </div>
+      <div class="card-body">
+        <%= link_to edit_user_registration_path, class: "btn btn-outline-primary w-100" do %>
+          <i class="fas fa-key me-2"></i> Alterar Senha
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Informações da Conta</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled mb-0">
+          <li class="mb-3">
+            <small class="text-muted d-block">Membro desde</small>
+            <%= l(current_user.created_at.to_date, format: :long) %>
+          </li>
+          <li class="mb-3">
+            <small class="text-muted d-block">Último acesso</small>
+            <%= time_ago_in_words(current_user.current_sign_in_at) if current_user.current_sign_in_at %>
+          </li>
+          <li>
+            <small class="text-muted d-block">Status</small>
+            <span class="badge bg-success">Ativo</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header">
+        <h5 class="mb-0">Zona de Perigo</h5>
+      </div>
+      <div class="card-body">
+        <%= button_to registration_path(current_user), method: :delete, 
+            class: "btn btn-outline-danger w-100",
+            data: { turbo_confirm: "Tem certeza? Esta ação não pode ser desfeita." } do %>
+          <i class="fas fa-trash me-2"></i> Excluir Conta
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div> 
