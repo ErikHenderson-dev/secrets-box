@@ -1,0 +1,34 @@
+<div class="sidebar bg-primary text-white" style="width: 250px; min-height: 100vh;">
+  <div class="p-3">
+    <div class="d-flex align-items-center mb-4">
+      <img src="/assets/logo.png" alt="Logo" style="width: 40px; height: 40px;" class="me-2">
+      <h4 class="mb-0">Secrets Box</h4>
+    </div>
+
+    <div class="mb-3">
+      <%= link_to new_my_secret_path, class: "btn btn-warning w-100 text-start" do %>
+        <i class="fas fa-plus me-2"></i> Criar Novo
+      <% end %>
+    </div>
+
+    <div class="nav flex-column">
+      <%= link_to dashboard_path, class: "nav-link text-white #{'active' if current_page?(dashboard_path)}" do %>
+        <i class="fas fa-lock me-2"></i> Meu Cofre
+      <% end %>
+
+      <%= link_to my_secrets_path, class: "nav-link text-white #{'active' if current_page?(my_secrets_path)}" do %>
+        <i class="fas fa-key me-2"></i> Senhas & Arquivos
+      <% end %>
+
+      <%= link_to settings_path, class: "nav-link text-white #{'active' if current_page?(settings_path)}" do %>
+        <i class="fas fa-cog me-2"></i> Configurações
+      <% end %>
+
+      <hr class="my-3">
+
+      <%= button_to destroy_user_session_path, method: :delete, class: "nav-link text-white border-0 bg-transparent w-100 text-start" do %>
+        <i class="fas fa-sign-out-alt me-2"></i> Sair
+      <% end %>
+    </div>
+  </div>
+</div> 

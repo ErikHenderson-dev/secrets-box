@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
+  has_many :my_secrets, dependent: :destroy
+
   enum status: { active: 0, inactive: 1, bloqued: 2 }
 end

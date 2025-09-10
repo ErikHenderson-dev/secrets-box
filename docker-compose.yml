@@ -10,10 +10,12 @@ services:
       - |
         rm -rf tmp/pids
         bundle install
+        bundle exec rake assets:precompile
         bundle exec rails db:migrate
         bundle exec rails s -b '0.0.0.0'
     volumes:
       - ".:/secrets_box"
+      - "tmp_data:/secrets_box/tmp"
     ports:
       - "3000:3000"
     depends_on:
@@ -44,3 +46,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  tmp_data:

@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_13_211532) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_29_011823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "my_secrets", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "username"
+    t.string "password"
+    t.string "url"
+    t.integer "category"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_my_secrets_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -37,4 +50,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_13_211532) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "my_secrets", "users"
 end
