@@ -139,7 +139,7 @@ Devise.setup do |config|
   # confirming their account. For instance, if set to 2.days, the user will be
   # able to access the website for two days without confirming their account,
   # access will be blocked just after the third day.
-  config.allow_unconfirmed_access_for = 365.days
+  config.allow_unconfirmed_access_for = 0.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm

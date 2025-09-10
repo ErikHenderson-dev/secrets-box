@@ -18,7 +18,7 @@ Rails.application.configure do
     user_name: ENV.fetch('EMAIL_USERNAME', nil),
     password: ENV.fetch('EMAIL_PASSWORD', nil),
     authentication: ENV.fetch('SMTP_AUTH', 'plain'),
-    enable_starttls_auto: ENV.fetch('SMTP_TLS', true)
+    enable_starttls_auto: true
   }
 
   config.active_support.deprecation = :log
